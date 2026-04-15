@@ -255,7 +255,7 @@ def get_expiry_status(expiry_date_str):
 # ── Gemini AI ─────────────────────────────────────────
 def get_gemini_model(api_key: str):
     genai.configure(api_key=api_key)
-    return genai.GenerativeModel("gemini-1.5-flash")
+    return genai.GenerativeModel("gemini-2.0-flash")
 
 def recognize_ingredients_from_image(image_bytes: bytes, api_key: str) -> list:
     model = get_gemini_model(api_key)
