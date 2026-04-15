@@ -143,12 +143,30 @@ html, body, [class*="css"] {
     box-shadow: 0 4px 12px rgba(99,102,241,0.15) !important;
 }
 
-/* expander 글자색 */
-.streamlit-expanderHeader {
+/* expander 스타일 */
+details {
+    background: white !important;
+    border-radius: 14px !important;
+    border: 1.5px solid #e5e7eb !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06) !important;
+    margin-bottom: 12px !important;
+}
+details summary {
     color: #1a1a2e !important;
     font-weight: 600 !important;
-    background: white !important;
-    border-radius: 12px !important;
+    font-size: 15px !important;
+    padding: 14px 16px !important;
+}
+details summary:hover {
+    background: #f9fafb !important;
+    border-radius: 14px !important;
+}
+.streamlit-expanderHeader,
+.streamlit-expanderHeader p,
+[data-testid="stExpander"] summary,
+[data-testid="stExpander"] summary p {
+    color: #1a1a2e !important;
+    font-weight: 600 !important;
 }
 
 /* 탭 스타일 */
