@@ -451,11 +451,14 @@ with tab2:
     api_key = st.session_state.api_key
 
     if not api_key:
-        st.markdown("""
-        <div class="empty-fridge">
-            <div class="icon">🤖</div>
-            <div class="text">사이드바(☰)에서<br>Gemini API 키를 입력해주세요!</div>
-        </div>""", unsafe_allow_html=True)
+        st.markdown("#### 🔑 Gemini API 키 입력")
+        st.caption("AI 레시피 기능을 사용하려면 API 키가 필요해요.")
+        inline_key = st.text_input("API 키", type="password", placeholder="AIzaSy...", label_visibility="collapsed")
+        if inline_key:
+            st.session_state.api_key = inline_key
+            st.success("✅ API 키 등록 완료! 잠시 후 새로고침됩니다.")
+            st.rerun()
+        st.info("💡 API 키 발급: aistudio.google.com/apikey (무료)")
     else:
         ingredients_summary = ", ".join([
             f"{i['name']}({i.get('quantity','')})"
