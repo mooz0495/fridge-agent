@@ -350,12 +350,14 @@ with tab1:
                     st.rerun()
 
         with input_tab2:
+            st.caption("냉장고 속 재료를 촬영하면 AI가 자동으로 인식해요!")
             if not st.session_state.api_key:
-                st.warning("사이드바(☰)에서 Gemini API 키를 먼저 입력해주세요!")
-            else:
-                st.caption("냉장고 속 재료를 촬영하면 AI가 자동으로 인식해요!")
-                camera_photo = st.camera_input("📷 사진 찍기")
-                if camera_photo:
+                st.warning("⚠️ 사이드바(☰)에서 Gemini API 키를 입력해야 인식이 가능해요!")
+            camera_photo = st.camera_input("📷 사진 찍기")
+            if camera_photo:
+                if not st.session_state.api_key:
+                    st.error("API 키를 먼저 사이드바(☰)에 입력해주세요!")
+                else:
                     with st.spinner("🤖 AI가 재료를 분석하는 중..."):
                         try:
                             detected = recognize_ingredients_from_image(
