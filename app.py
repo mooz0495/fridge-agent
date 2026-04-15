@@ -180,9 +180,16 @@ details summary:hover {
 .stTabs [data-baseweb="tab"] {
     border-radius: 8px !important;
     font-size: 13px !important;
+    color: #374151 !important;
+}
+.stTabs [data-baseweb="tab"] p {
+    color: #374151 !important;
 }
 .stTabs [aria-selected="true"] {
     background: #1a1a2e !important;
+    color: white !important;
+}
+.stTabs [aria-selected="true"] p {
     color: white !important;
 }
 
