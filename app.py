@@ -253,12 +253,13 @@ def get_expiry_status(expiry_date_str):
         return "ok", "날짜오류", 999
 
 # ── Gemini AI ─────────────────────────────────────────
-def get_gemini_model(api_key: str):
+def get_gemini_model(api_key: str, vision: bool = False):
     genai.configure(api_key=api_key)
-    return genai.GenerativeModel("gemini-1.5-flash-latest")
+    model_name = "gemini-1.5-pro" if vision else "gemini-pro"
+    return genai.GenerativeModel(model_name)
 
 def recognize_ingredients_from_image(image_bytes: bytes, api_key: str) -> list:
-    model = get_gemini_model(api_key)
+    model = get_gemini_model(api_key, vision=True)
     image = Image.open(io.BytesIO(image_bytes))
     prompt = """이 사진에서 식재료를 모두 찾아서 JSON 형식으로 알려주세요.
 반드시 아래 형식만 출력하고 다른 설명은 쓰지 마세요.
