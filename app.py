@@ -143,6 +143,14 @@ html, body, [class*="css"] {
     box-shadow: 0 4px 12px rgba(99,102,241,0.15) !important;
 }
 
+/* expander 글자색 */
+.streamlit-expanderHeader {
+    color: #1a1a2e !important;
+    font-weight: 600 !important;
+    background: white !important;
+    border-radius: 12px !important;
+}
+
 /* 탭 스타일 */
 .stTabs [data-baseweb="tab-list"] {
     background: white;
