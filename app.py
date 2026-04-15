@@ -255,7 +255,7 @@ def get_expiry_status(expiry_date_str):
 # ── Gemini AI ─────────────────────────────────────────
 def get_gemini_model(api_key: str):
     genai.configure(api_key=api_key)
-    return genai.GenerativeModel("gemini-2.0-flash")
+    return genai.GenerativeModel("gemini-1.5-flash-latest")
 
 def recognize_ingredients_from_image(image_bytes: bytes, api_key: str) -> list:
     model = get_gemini_model(api_key)
@@ -518,7 +518,12 @@ with tab2:
                         st.write(answer)
                         st.session_state.chat_history.append({"role":"assistant","content":answer})
                     except Exception as e:
-                        st.error(f"오류: {e}")
+                        if "429" in str(e):
+                            st.warning("⏳ AI 요청이 너무 많아요. 10초 후 다시 시도해주세요!")
+                        elif "404" in str(e):
+                            st.error("모델 오류가 발생했어요. 새로고침 후 다시 시도해주세요.")
+                        else:
+                            st.error(f"오류: {e}")
 
         if st.session_state.chat_history:
             if st.button("🔄 대화 초기화"):
